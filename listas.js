@@ -248,10 +248,8 @@ console.log("--------------------------------------");
 
 console.log("Eliminar elemento indicando indice: " + remove(list, 1));
 console.log(list);
-console.log("Primer Elemento: " + firstElement(list));
 console.log("Eliminar elemento indicando indice: " + remove(list, 0));
 console.log(list);
-console.log("Primer Elemento: " + firstElement(list));
 console.log("Eliminar elemento " + removeElement(list, 4));
 console.log(list);
 

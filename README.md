@@ -1,6 +1,6 @@
 # proyectolistas
-version 4
- 
+version 5
+ //mismos metodos pero con las funciones estandar
 *create() 
 *isEmpty() 
 *isFull() 
