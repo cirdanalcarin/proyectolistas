@@ -26,25 +26,9 @@ function add(list, elem) {
         } else {
             if (!isNaN(elem)) {
                 list.push(elem);
+                list.sort();
             } else {
                 throw "The element is not a number";
-            }
-        }
-        return size(list);
-    } catch (error) {
-        return "Error: " + error;
-    }
-}
-
-function addAt(list, elem, index) {
-    try {
-        if (isFull(list)) {
-            throw "Full list";
-        } else {
-            if (!isNaN(elem) && (index >= 0 && index < SIZE)) {
-                list.splice(index, 0, elem);
-            } else {
-                throw "The index is out of range or the elemnt is not a number";
             }
         }
         return size(list);
@@ -80,20 +64,6 @@ function indexOf(list, elem) {
             throw "The element is not a Number";
         } else if (!isEmpty(list)) {
             index = list.indexOf(elem);
-            return index;
-        }
-    } catch (error) {
-        return "Error: " + error;
-    }
-}
-
-function lastIndexOf(list, elem) {
-    var index;
-    try {
-        if (isNaN(elem)) {
-            throw "The element is not a Number";
-        } else if (!isEmpty(list)) {
-            index = list.lastIndexOf(elem);
             return index;
         }
     } catch (error) {
@@ -164,12 +134,6 @@ function removeElement(list, elem) {
     }
 }
 
-function set(list, elem, index) {
-    var previousElem = list[index];
-    list.splice(index, 1, elem);
-    return previousElem;
-}
-
 function test() {
     var list = create();
     console.log("Longitud inicial: " + size(list));
@@ -180,7 +144,7 @@ function test() {
     console.log("--------------------------------------");
 
     console.log("Añadiendo un elemento a la lista...");
-    add(list, 2);
+    add(list, 8);
     console.log(list);
 
     console.log("Añadiendo otro elemento a la lista...");
@@ -188,23 +152,18 @@ function test() {
     console.log(list);
 
     console.log("Añadiendo otro elemento a la lista...");
-    add(list, 8);
+    add(list, 1);
     console.log(list);
 
     console.log("Añadiendo otro elemento a la lista...");
     add(list, 7);
     console.log(list);
 
-    console.log("Añadiendo un elemento a la lista en una posición indicada...");
-    addAt(list, 4, 3);
-    console.log(list);
-
     console.log("Obteniendo elemento indicando el indice: " + get(list, 1));
 
     console.log("--------------------------------------");
 
-    console.log("El elemento 4 esta en la posicion " + indexOf(list, 4));
-    console.log("El elemento 3 esta en la posicion " + lastIndexOf(list, 3));
+    console.log("El elemento 7 esta en la posicion " + indexOf(list, 7));
 
     console.log("--------------------------------------");
 
@@ -212,15 +171,11 @@ function test() {
     console.log("Primer Elemento: " + firstElement(list));
     console.log("Ultimo Elemento: " + lastElement(list));
     console.log(list);
-    console.log("Reemplazar elemento " + set(list, 5, 1));
-    console.log(list);
     console.log("Longitud final: " + size(list));
 
     console.log("--------------------------------------");
 
     console.log("Eliminar elemento indicando indice: " + remove(list, 1));
-    console.log(list);
-    console.log("Eliminar elemento indicando indice: " + remove(list, 0));
     console.log(list);
     console.log("Eliminar elemento " + removeElement(list, 7));
     console.log(list);

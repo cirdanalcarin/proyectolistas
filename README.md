@@ -1,6 +1,6 @@
 # proyectolistas
-version 5
- //mismos metodos pero con las funciones estandar
+version 6
+ //mismos metodos pero ordenando las listas.
 *create() 
 *isEmpty() 
 *isFull() 

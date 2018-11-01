@@ -3,13 +3,13 @@
 var SIZE = 5;
 
 function create() {
-    var list = new Array(SIZE);
+    var list = [];
     return list;
 }
 
 function isEmpty(list) {
     var empty = false;
-    if (size(list) == 0) {
+    if (list.length === 0) {
         return empty = true;
     } else {
         return empty;
@@ -18,7 +18,7 @@ function isEmpty(list) {
 
 function isFull(list) {
     var full = false;
-    if (list[SIZE - 1] === list.length) {
+    if (list.length === SIZE) {
         return full = true;
     } else {
         return full;
@@ -130,16 +130,11 @@ function lastIndexOf(list, elem) {
 }
 
 function capacity(list) {
-    return list.length;
+    return SIZE;
 }
 
 function clear(list) {
-    if (!isEmpty(list)) {
-        for (let i = 0; i < list.length; i++) {
-            list[i] = undefined;
-        }
-    }
-    return list;
+    return list.length = 0;
 }
 
 function firstElement(list) {
@@ -207,54 +202,63 @@ function set(list, elem, index) {
     return previousElem;
 }
 
-var list = create();
-console.log("Longitud inicial: " + size(list));
-console.log("Capacidad: " + capacity(list));
-console.log("Esta vacia: " + isEmpty(list));
-console.log("ESta llena: " + isFull(list));
+function test() {
+    var list = create();
+    console.log("Longitud inicial: " + size(list));
+    console.log("Capacidad: " + capacity(list));
+    console.log("Esta vacia: " + isEmpty(list));
+    console.log("ESta llena: " + isFull(list));
 
-console.log("--------------------------------------");
+    console.log("--------------------------------------");
 
-console.log("Añadiendo un elemento a la lista...");
-add(list, 2);
-console.log(list);
+    console.log("Añadiendo un elemento a la lista...");
+    add(list, 2);
+    console.log(list);
 
-console.log("Añadiendo otro elemento a la lista...");
-add(list, 3);
-console.log(list);
+    console.log("Añadiendo otro elemento a la lista...");
+    add(list, 3);
+    console.log(list);
 
-console.log("Añadiendo un elemento a la lista en una posición indicada...");
-addAt(list, 4, 3);
-console.log(list);
+    console.log("Añadiendo otro elemento a la lista...");
+    add(list, 8);
+    console.log(list);
 
-console.log("Obteniendo elemento indicando el indice: " + get(list, 1));
+    console.log("Añadiendo otro elemento a la lista...");
+    add(list, 7);
+    console.log(list);
 
-console.log("--------------------------------------");
+    console.log("Añadiendo un elemento a la lista en una posición indicada...");
+    addAt(list, 4, 3);
+    console.log(list);
 
-console.log("El elemento 4 esta en la posicion " + indexOf(list, 4));
-console.log("El elemento 3 esta en la posicion " + lastIndexOf(list, 3));
+    console.log("Obteniendo elemento indicando el indice: " + get(list, 1));
 
-console.log("--------------------------------------");
+    console.log("--------------------------------------");
 
-console.log("Convertido a String: " + toString(list));
-console.log("Primer Elemento: " + firstElement(list));
-console.log("Ultimo Elemento: " + lastElement(list));
-console.log(list);
-console.log("Reemplazar elemento " + set(list, 5, 1));
-console.log(list);
-console.log("Longitud final: " + size(list));
+    console.log("El elemento 4 esta en la posicion " + indexOf(list, 4));
+    console.log("El elemento 3 esta en la posicion " + lastIndexOf(list, 3));
 
-console.log("--------------------------------------");
+    console.log("--------------------------------------");
 
-console.log("Eliminar elemento indicando indice: " + remove(list, 1));
-console.log(list);
-console.log("Eliminar elemento indicando indice: " + remove(list, 0));
-console.log(list);
-console.log("Eliminar elemento " + removeElement(list, 4));
-console.log(list);
+    console.log("Convertido a String: " + toString(list));
+    console.log("Primer Elemento: " + firstElement(list));
+    console.log("Ultimo Elemento: " + lastElement(list));
+    console.log(list);
+    console.log("Reemplazar elemento " + set(list, 5, 1));
+    console.log(list);
+    console.log("Longitud final: " + size(list));
 
-console.log("--------------------------------------");
+    console.log("--------------------------------------");
 
-console.log("Limpiando lista " + clear(list));
+    console.log("Eliminar elemento indicando indice: " + remove(list, 1));
+    console.log(list);
+    console.log("Eliminar elemento indicando indice: " + remove(list, 0));
+    console.log(list);
+    console.log("Eliminar elemento " + removeElement(list, 4));
+    console.log(list);
 
+    console.log("--------------------------------------");
 
+    console.log("Limpiando lista " + clear(list));
+}
+window.onload = test();

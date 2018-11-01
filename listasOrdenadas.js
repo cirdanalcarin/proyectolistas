@@ -2,50 +2,58 @@
 
 var SIZE = 5;
 
+function sort(list) {
+    var jMin;
+    for (var i = 0; i < list.length; i++) {
+        var j = jMin = i;
+        for (++j; j < list.length; ++j) {
+            (list[j] < list[jMin]) && (jMin = j);
+        }
+        [list[i], list[jMin]] = [list[jMin], list[i]];
+    }
+    return list;
+}
+
 function create() {
     var list = [];
     return list;
 }
 
 function isEmpty(list) {
-    return (list.length === 0);
+    var empty = false;
+    if (list.length === 0) {
+        return empty = true;
+    } else {
+        return empty;
+    }
 }
 
 function isFull(list) {
-    return (list.length === SIZE);
+    var full = false;
+    if (list.length === SIZE) {
+        return full = true;
+    } else {
+        return full;
+    }
 }
 
 function size(list) {
-    return list.length;
+    var counter = 0;
+    for (let i = 0; i < list.length; i++) {
+        if (!isNaN(list[i])) {
+            counter++;
+        }
+    }
+    return counter;
 }
 
 function add(list, elem) {
     try {
         if (isFull(list)) {
             throw "Full list";
-        } else {
-            if (!isNaN(elem)) {
-                list.push(elem);
-            } else {
-                throw "The element is not a number";
-            }
-        }
-        return size(list);
-    } catch (error) {
-        return "Error: " + error;
-    }
-}
-
-function addAt(list, elem, index) {
-    try {
-        if (isFull(list)) {
-            throw "Full list";
-        } else {
-            if (!isNaN(elem) && (index >= 0 && index < SIZE)) {
-                list.splice(index, 0, elem);
-            } else {
-                throw "The index is out of range or the elemnt is not a number";
-            }
+        } else if (!isNaN(elem)) {
+            list[size(list)] = elem;
+            sort(list);
         }
         return size(list);
     } catch (error) {
@@ -70,7 +78,15 @@ function get(list, index) {
 }
 
 function toString(list) {
-    return list.join("-");
+    var str = "";
+    for (let i = 0; i < list.length; i++) {
+        if (list[i] !== undefined) {
+            str += list[i] + " - ";
+        } else if (list[i] === undefined) {
+            str += " " + " - ";
+        }
+    }
+    return str;
 }
 
 function indexOf(list, elem) {
@@ -79,22 +95,13 @@ function indexOf(list, elem) {
         if (isNaN(elem)) {
             throw "The element is not a Number";
         } else if (!isEmpty(list)) {
-            index = list.indexOf(elem);
-            return index;
-        }
-    } catch (error) {
-        return "Error: " + error;
-    }
-}
-
-function lastIndexOf(list, elem) {
-    var index;
-    try {
-        if (isNaN(elem)) {
-            throw "The element is not a Number";
-        } else if (!isEmpty(list)) {
-            index = list.lastIndexOf(elem);
-            return index;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i] === elem) {
+                    return index = i;
+                }
+            }
+        } else {
+            return index = -1;
         }
     } catch (error) {
         return "Error: " + error;
@@ -110,11 +117,12 @@ function clear(list) {
 }
 
 function firstElement(list) {
+    var elem;
     try {
         if (isEmpty(list)) {
             throw "Empty list";
         } else {
-            return list[0];
+            return elem = list[0];
         }
     } catch (error) {
         return "Error: " + error;
@@ -122,9 +130,10 @@ function firstElement(list) {
 }
 
 function lastElement(list) {
+    var elem;
     try {
         if (!isEmpty(list)) {
-            return list.slice(list.length - 1);
+            return elem = list[list.length - 1];
         } else {
             throw "Empty list";
         }
@@ -137,7 +146,8 @@ function remove(list, index) {
     var rm = 0;
     try {
         if (!isEmpty(list) && (index >= 0 && index < SIZE)) {
-            rm = list.splice(index, 1);
+            rm = list[index];
+            list[index] = undefined;
         } else {
             throw "The index is out of range or the elemnt is not a number";
         }
@@ -154,7 +164,7 @@ function removeElement(list, elem) {
         if (isNaN(elem)) {
             throw "The element is not a Number";
         } else if (!isNaN(list[index])) {
-            list.splice(index, 1);
+            list[index] = undefined;
             return rm = true;
         } else {
             return rm = false;
@@ -162,12 +172,6 @@ function removeElement(list, elem) {
     } catch (error) {
         return "Error: " + error;
     }
-}
-
-function set(list, elem, index) {
-    var previousElem = list[index];
-    list.splice(index, 1, elem);
-    return previousElem;
 }
 
 function test() {
@@ -180,7 +184,11 @@ function test() {
     console.log("--------------------------------------");
 
     console.log("Añadiendo un elemento a la lista...");
-    add(list, 2);
+    add(list, 9);
+    console.log(list);
+
+    console.log("Añadiendo otro elemento a la lista...");
+    add(list, 4);
     console.log(list);
 
     console.log("Añadiendo otro elemento a la lista...");
@@ -188,15 +196,7 @@ function test() {
     console.log(list);
 
     console.log("Añadiendo otro elemento a la lista...");
-    add(list, 8);
-    console.log(list);
-
-    console.log("Añadiendo otro elemento a la lista...");
     add(list, 7);
-    console.log(list);
-
-    console.log("Añadiendo un elemento a la lista en una posición indicada...");
-    addAt(list, 4, 3);
     console.log(list);
 
     console.log("Obteniendo elemento indicando el indice: " + get(list, 1));
@@ -204,7 +204,6 @@ function test() {
     console.log("--------------------------------------");
 
     console.log("El elemento 4 esta en la posicion " + indexOf(list, 4));
-    console.log("El elemento 3 esta en la posicion " + lastIndexOf(list, 3));
 
     console.log("--------------------------------------");
 
@@ -212,21 +211,19 @@ function test() {
     console.log("Primer Elemento: " + firstElement(list));
     console.log("Ultimo Elemento: " + lastElement(list));
     console.log(list);
-    console.log("Reemplazar elemento " + set(list, 5, 1));
-    console.log(list);
     console.log("Longitud final: " + size(list));
 
     console.log("--------------------------------------");
 
     console.log("Eliminar elemento indicando indice: " + remove(list, 1));
     console.log(list);
-    console.log("Eliminar elemento indicando indice: " + remove(list, 0));
-    console.log(list);
-    console.log("Eliminar elemento " + removeElement(list, 7));
+
+    console.log("Eliminar elemento " + removeElement(list, 9));
     console.log(list);
 
     console.log("--------------------------------------");
 
     console.log("Limpiando lista " + clear(list));
 }
+
 window.onload = test();
