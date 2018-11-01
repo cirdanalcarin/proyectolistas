@@ -44,7 +44,7 @@ function add(list, elem) {
         }
         return size(list);
     } catch (error) {
-        console.log("Error: " + error);
+        return "Error: " + error;
     }
 }
 
@@ -55,8 +55,9 @@ function addAt(list, elem, index) {
         } else if (!isNaN(elem) && (index >= 0 && index < SIZE)) {
             list[index] = elem;
         }
+        return size(list);
     } catch (error) {
-        console.log("Error: " + error);
+        return "Error: " + error;
     }
 }
 
@@ -65,16 +66,40 @@ function get(list, index) {
     try {
         if (isEmpty(list) && (index >= 0 && index < SIZE)) {
             throw "Empty list, you can not get the item";
+        } else if ((list[index] == undefined)) {
+            throw "The position in the list is empty";
         } else {
             elem = list[index];
         }
         return elem;
     } catch (error) {
-        console.log("Error: " + error);
+        return "Error: " + error;
     }
 }
+
+function toString(list) {
+    var str = "";
+    for (let i = 0; i < list.length; i++) {
+        if (list[i] != undefined) {
+            str += list[i] + " - ";
+        } else if (list[i] == undefined) {
+            str += " " + " - ";
+        }
+    }
+    return str;
+}
+
+ 
+
 var list = create();
 console.log(list);
-console.log(isEmpty(list));
-console.log(isFull(list));
-console.log(size(list));
+console.log("Empty: " + isEmpty(list));
+console.log("Full" + isFull(list));
+console.log("size: " + size(list));
+console.log("add: " + add(list, 3));
+console.log("add: " + add(list, 5));
+console.log("addAt: " + addAt(list, 2, 4));
+console.log("size: " + size(list));
+console.log("Get: " + get(list, 3));
+console.log("toString: " + toString(list));
+
