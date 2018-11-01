@@ -1,3 +1,20 @@
 # proyectolistas
-version 3 
-*create() *isEmpty() *isFull() *size() *add() *addAt() *get() *toString
+version 4
+ 
+*create() 
+*isEmpty() 
+*isFull() 
+*size() 
+*add() 
+*addAt() 
+*get() 
+*toString() 
+*indexOf() 
+*lastIndexOf() 
+*capacity() 
+*clear() 
+*firsElement() 
+*lastElement() 
+*remove()
+*removeJElement() 
+*set()
